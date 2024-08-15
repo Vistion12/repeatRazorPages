@@ -1,0 +1,37 @@
+﻿@page
+@using PokemonLibrary
+@model repeatRazorPages.Pages.PokemonsPageModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="container">
+    @foreach(var pokemon in PokemonStorege.Pokemons)
+    {
+        <div class="card" style="width: 18rem;">
+            <img src="@pokemon.URL" class="card-img-top" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@pokemon.Name</h5>
+                <p class="card-text">@pokemon.Description</p>
+                <p class="card-text">@pokemon.Level</p>
+                <a href="#" class="btn btn-primary">Какая то кнопка</a>
+            </div>
+        </div>
+	}
+    <div class="row">
+		<p>создание нового покемончика<br/></p>
+        <form method="post">
+            <div>
+                <input asp-for="myPokemon.Name" type="text"  placeholder="введите имя покемона" />
+            </div>
+			<div>
+				<input asp-for="myPokemon.URL" type="text" placeholder="введите адрес картинки" />
+			</div>
+            <div>
+                <input asp-for="myPokemon.Description" type="text" placeholder="введите описание" />
+            </div>
+            <div>
+                <input asp-for="myPokemon.Level" type="text" placeholder="введите уровень покемоннна" />
+            </div>           
+            <input type="submit">
+        </form>
+    </div>
+</div>
