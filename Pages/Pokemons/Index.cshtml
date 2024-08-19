@@ -1,0 +1,40 @@
+﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using repeatRazorPages.Pages.Pokemons
+@model IndexModel
+
+
+<div class="container" style="padding-top: 35px">
+
+    <div class="d-flex justify-content-center mb-3">
+        <a asp-page="/Pokemons/Add" class="btn btn-success">Добавить</a>
+    </div>
+    <form method="post">
+        <p>Поиск
+            <input type="text" asp-for="SearchNamePokemon" value=""/>
+            <input type="submit" />
+        </p>
+    </form>
+    <div class="d-flex flex-wrap justify-content-center">
+        @foreach (var pokemon in @Model.Pokemons)
+        {
+            <div class="card m-2" style="width: 18rem; height: 22rem;">
+                <img src="@pokemon.URL" class="card-img-top" alt="@pokemon.Name" style="height: 10rem; object-fit: cover;">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 class="card-title" style="height: 3rem; overflow: hidden;">Имя: @pokemon.Name</h5>
+                    <p class="card-text" style="height: 3rem; overflow: hidden;">Уровень: @pokemon.Level</p>
+                    <div method="post" class="d-flex justify-content-between">
+                        <a asp-page="/Pokemons/Details" asp-route-id="@pokemon.Id" class="btn btn-primary">Инфо</a>
+                        <a asp-page="/Pokemons/Delete" asp-route-id="@pokemon.Id" class="btn btn-primary">удалить</a>
+						@* <button type="submit" asp-route-id="@pokemon.Id" asp-page-handler="delete" class="btn btn-primary">Удалить</button>
+                         <a asp-page="/Pokemons/Edit" asp-route-id="@pokemon.Id" class="btn btn-primary">Редактировать</a> *@
+                    </div>
+                    <div>
+                        <a asp-page="/Pokemons/Edit" asp-route-id="@pokemon.Id" class="btn btn-primary">редактировать</a>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.VisualBasic;
-using PokemonLibrary;
+using repeatRazorPages.Model;
 
 namespace repeatRazorPages.Pages;
 
@@ -18,7 +18,7 @@ public class PokemonsPageModel : PageModel
     {
         if (myPokemon is not null && ModelState.IsValid)
         {
-            PokemonStorege.Pokemons.Add(myPokemon);       
+            //PokemonStorege.Pokemons.Add(myPokemon);       
 			return RedirectToPage("/PokemonsPage");
 		}
         return Page();

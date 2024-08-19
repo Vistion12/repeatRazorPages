@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using repeatRazorPages.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 ConfigureServices(builder.Services);
@@ -6,6 +9,10 @@ Configure(app, app.Environment);
 app.Run();
 void ConfigureServices(IServiceCollection services)
 {
+    services.AddDbContext<PokemonContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PokemonContext") ??
+        throw new InvalidOperationException("Connection string 'PokemonContext' not found.")));
+
     services.AddRazorPages();
 }
 void Configure(IApplicationBuilder app, IWebHostEnvironment env)
